@@ -89,8 +89,8 @@ No special `System Configurator` settings are required.
 
 ## 9. Demo 
 
-	 Xem tài liệu chi tiết tại [Hướng dẫn sử dụng](Hướng dẫn sử dụng Kafka Plugin.docx)
-	 
+Xem tài liệu chi tiết tại [Hướng dẫn sử dụng](./Hướng%20dẫn%20sử%20dụng%20Kafka%20Plugin.docx)
+
 ## 10. Author & License
 
 -   **Author**: [DungLT]
