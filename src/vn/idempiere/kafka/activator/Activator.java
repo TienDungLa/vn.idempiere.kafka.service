@@ -6,6 +6,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 import vn.idempiere.kafka.process.KafkaGenColumnProcess;
+import vn.idempiere.kafka.process.ResendMessageProcess;
 
 public class Activator implements BundleActivator {
 
@@ -20,6 +21,7 @@ public class Activator implements BundleActivator {
 		
 		IMappedProcessFactory mappedFactory = Core.getMappedProcessFactory();
 		mappedFactory.addMapping(KafkaGenColumnProcess.class.getName(), () -> new KafkaGenColumnProcess());
+		mappedFactory.addMapping(ResendMessageProcess.class.getName(), () -> new ResendMessageProcess());
 
 	}
 

@@ -142,6 +142,7 @@ public class EventTrxListener implements TrxEventListener {
 				e.printStackTrace();
 			} finally {
 				if (kafkaProducer != null) {
+					kafkaProducer.flush(); 
 					kafkaProducer.close();
 				}
 			}

@@ -90,6 +90,43 @@ public class KafkaProducer  {
 	    }
 	}
 	
+	public Future<RecordMetadata> resendAsync(MAuditlog auditlog) {
+		String topic = auditlog.get_ValueAsString("TopicName");
+		String value = auditlog.get_ValueAsString("MessageData");
+		String key = auditlog.get_ValueAsString("MessageKey");
+		
+		try {
+	        ProducerRecord<String, String> record = new ProducerRecord<>(topic, key, value);           
+	        Future<RecordMetadata> future = producer.send(record, (metadata, exception) -> {
+	        	// nếu gửi message lỗi
+	            if (exception != null) {
+	                log.log(Level.SEVERE, "Error resending message asynchronously", exception);
+	                auditlog.setMessageStatus("Error");
+	                auditlog.setErrorStackTrace(exception.toString());
+	                auditlog.setErrorMessage(exception.getMessage());
+	                auditlog.setResendCount(auditlog.getResendCount() + 1);
+	            // gửi thành công
+	            } else {
+	                log.info(String.format("Message resent async to topic=%s, partition=%d, offset=%d", 
+	                        metadata.topic(), metadata.partition(), metadata.offset()));
+	                auditlog.setErrorStackTrace(null);
+	                auditlog.setErrorMessage(null);
+	                auditlog.setResendCount(auditlog.getResendCount() + 1);
+	                auditlog.setMessageStatus("Resend Success");
+	            }
+	            auditlog.saveEx(); 
+	        });
+	        return future;
+	    } catch (Exception e) {
+	        log.log(Level.SEVERE, "Error  async resend", e);
+	        auditlog.setMessageStatus("Error");
+			auditlog.setErrorStackTrace(e.toString());
+			auditlog.setErrorMessage(e.getMessage());
+			auditlog.saveEx();
+	    }	
+		return null;
+	}
+	
 	public RecordMetadata send(String topic, String value) {
 		return sendSync(topic, null, value);
 	}

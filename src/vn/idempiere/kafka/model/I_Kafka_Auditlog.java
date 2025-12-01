@@ -37,9 +37,9 @@ public interface I_Kafka_Auditlog
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
 
-    /** AccessLevel = 4 - System 
+    /** AccessLevel = 3 - Client - Org 
      */
-    BigDecimal accessLevel = BigDecimal.valueOf(4);
+    BigDecimal accessLevel = BigDecimal.valueOf(3);
 
     /** Load Meta Data */
 
@@ -88,15 +88,6 @@ public interface I_Kafka_Auditlog
 
 	/** Get Error Message	  */
 	public String getErrorMessage();
-
-    /** Column name ErrorName */
-    public static final String COLUMNNAME_ErrorName = "ErrorName";
-
-	/** Set Error Name	  */
-	public void setErrorName (String ErrorName);
-
-	/** Get Error Name	  */
-	public String getErrorName();
 
     /** Column name ErrorStackTrace */
     public static final String COLUMNNAME_ErrorStackTrace = "ErrorStackTrace";
@@ -198,6 +189,15 @@ public interface I_Kafka_Auditlog
 	/** Get Record ID	  */
 	public int getRecordID();
 
+    /** Column name ResendCount */
+    public static final String COLUMNNAME_ResendCount = "ResendCount";
+
+	/** Set Resend Count	  */
+	public void setResendCount (int ResendCount);
+
+	/** Get Resend Count	  */
+	public int getResendCount();
+
     /** Column name TableName */
     public static final String COLUMNNAME_TableName = "TableName";
 
@@ -219,4 +219,20 @@ public interface I_Kafka_Auditlog
 
 	/** Get Topic name	  */
 	public String getTopicName();
+
+    /** Column name Updated */
+    public static final String COLUMNNAME_Updated = "Updated";
+
+	/** Get Updated.
+	  * Date this record was updated
+	  */
+	public Timestamp getUpdated();
+
+    /** Column name UpdatedBy */
+    public static final String COLUMNNAME_UpdatedBy = "UpdatedBy";
+
+	/** Get Updated By.
+	  * User who updated this records
+	  */
+	public int getUpdatedBy();
 }

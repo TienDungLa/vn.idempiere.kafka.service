@@ -1,5 +1,8 @@
--- Xóa và tạo lại bảng adempiere.kafka_eventtype
-DROP TABLE IF EXISTS adempiere.kafka_eventtype CASCADE;
+-- adempiere.kafka_eventtype definition
+
+-- Drop table
+
+-- DROP TABLE adempiere.kafka_eventtype;
 
 CREATE TABLE adempiere.kafka_eventtype (
 	kafka_eventtype_id numeric(10) NOT NULL,
@@ -18,8 +21,11 @@ CREATE TABLE adempiere.kafka_eventtype (
 );
 
 
--- Xóa và tạo lại bảng adempiere.kafka_registryservice
-DROP TABLE IF EXISTS adempiere.kafka_registryservice CASCADE;
+-- adempiere.kafka_registryservice definition
+
+-- Drop table
+
+-- DROP TABLE adempiere.kafka_registryservice;
 
 CREATE TABLE adempiere.kafka_registryservice (
 	kafka_registryservice_id numeric(10) NOT NULL,
@@ -39,8 +45,11 @@ CREATE TABLE adempiere.kafka_registryservice (
 );
 
 
--- Xóa và tạo lại bảng adempiere.kafka_auditlog
-DROP TABLE IF EXISTS adempiere.kafka_auditlog CASCADE;
+-- adempiere.kafka_auditlog definition
+
+-- Drop table
+
+-- DROP TABLE adempiere.kafka_auditlog;
 
 CREATE TABLE adempiere.kafka_auditlog (
 	kafka_auditlog_id numeric(10) NOT NULL,
@@ -49,13 +58,15 @@ CREATE TABLE adempiere.kafka_auditlog (
 	isactive bpchar(1) DEFAULT 'Y'::bpchar NOT NULL,
 	created timestamp DEFAULT now() NOT NULL,
 	createdby numeric(10) NOT NULL,
+	updated timestamp DEFAULT now() NULL,
+	updatedby numeric(10) NULL,
 	kafka_registryservice_id numeric(10) NULL,
 	tablename varchar(60) NULL,
 	recordid numeric(10) NULL,
 	messagekey varchar(60) NULL,
 	eventtype varchar(20) NULL,
 	messagestatus varchar(20) NULL,
-	errorname varchar(255) NULL,
+	resendcount numeric(10) DEFAULT 0 NULL,
 	errormessage text NULL,
 	errorstacktrace text NULL,
 	messagedata text NULL,
@@ -66,8 +77,11 @@ CREATE TABLE adempiere.kafka_auditlog (
 );
 
 
--- Xóa và tạo lại bảng adempiere.kafka_registrytable
-DROP TABLE IF EXISTS adempiere.kafka_registrytable CASCADE;
+-- adempiere.kafka_registrytable definition
+
+-- Drop table
+
+-- DROP TABLE adempiere.kafka_registrytable;
 
 CREATE TABLE adempiere.kafka_registrytable (
 	kafka_registrytable_id numeric(10) NOT NULL,
@@ -88,8 +102,11 @@ CREATE TABLE adempiere.kafka_registrytable (
 );
 
 
--- Xóa và tạo lại bảng adempiere.kafka_registrycolumn
-DROP TABLE IF EXISTS adempiere.kafka_registrycolumn CASCADE;
+-- adempiere.kafka_registrycolumn definition
+
+-- Drop table
+
+-- DROP TABLE adempiere.kafka_registrycolumn;
 
 CREATE TABLE adempiere.kafka_registrycolumn (
 	kafka_registrycolumn_id numeric(10) NOT NULL,
@@ -108,8 +125,11 @@ CREATE TABLE adempiere.kafka_registrycolumn (
 );
 
 
--- Xóa và tạo lại bảng adempiere.kafka_registryevent
-DROP TABLE IF EXISTS adempiere.kafka_registryevent CASCADE;
+-- adempiere.kafka_registryevent definition
+
+-- Drop table
+
+-- DROP TABLE adempiere.kafka_registryevent;
 
 CREATE TABLE adempiere.kafka_registryevent (
 	kafka_registryevent_id numeric(10) NOT NULL,

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Kafkaservice
 Bundle-SymbolicName: vn.idempiere.kafka.serivce;singleton:=true
-Bundle-Version: 12.0.0.202511241012
+Bundle-Version: 12.0.0.202511260332
 Bundle-Activator: vn.idempiere.kafka.activator.Activator
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: sts.kafkaservice

@@ -31,7 +31,7 @@ public class X_Kafka_Auditlog extends PO implements I_Kafka_Auditlog, I_Persiste
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20251124L;
+	private static final long serialVersionUID = 20251125L;
 
     /** Standard Constructor */
     public X_Kafka_Auditlog (Properties ctx, int Kafka_Auditlog_ID, String trxName)
@@ -80,7 +80,7 @@ public class X_Kafka_Auditlog extends PO implements I_Kafka_Auditlog, I_Persiste
     }
 
     /** AccessLevel
-      * @return 4 - System
+      * @return 3 - Client - Org
       */
     protected int get_AccessLevel()
     {
@@ -114,21 +114,6 @@ public class X_Kafka_Auditlog extends PO implements I_Kafka_Auditlog, I_Persiste
 	public String getErrorMessage()
 	{
 		return (String)get_Value(COLUMNNAME_ErrorMessage);
-	}
-
-	/** Set Error Name.
-		@param ErrorName Error Name
-	*/
-	public void setErrorName (String ErrorName)
-	{
-		set_Value (COLUMNNAME_ErrorName, ErrorName);
-	}
-
-	/** Get Error Name.
-		@return Error Name	  */
-	public String getErrorName()
-	{
-		return (String)get_Value(COLUMNNAME_ErrorName);
 	}
 
 	/** Set Error Stack Trace.
@@ -295,6 +280,24 @@ public class X_Kafka_Auditlog extends PO implements I_Kafka_Auditlog, I_Persiste
 	public int getRecordID()
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_RecordID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Resend Count.
+		@param ResendCount Resend Count
+	*/
+	public void setResendCount (int ResendCount)
+	{
+		set_Value (COLUMNNAME_ResendCount, Integer.valueOf(ResendCount));
+	}
+
+	/** Get Resend Count.
+		@return Resend Count	  */
+	public int getResendCount()
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_ResendCount);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
